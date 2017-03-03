@@ -49,9 +49,12 @@ public class TestUtils {
 
     @org.junit.Test
     public void testParseKeyVals() throws Exception {
-        Utils.parseKeyVals("a=1 d=5");
+        Map<String, String> testParse = new HashMap<String, String>();
+        testParse.put("a", "1");
+        testParse.put("d", "5");
+        Assert.assertEquals(testParse, Utils.parseKeyVals("a=1 d=5"));
         exception.expect(Exception.class);
-        exception.expectMessage("Parse message " + "a=1=c d=5" + " failed");
+        exception.expectMessage("Parse message a=1=c d=5 failed");
         Utils.parseKeyVals("a=1=c d=5");
     }
 }
